@@ -1,11 +1,11 @@
 package ru.kata.spring.boot_security.demo.model;
 
 import lombok.*;
-
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 
 @Entity
@@ -29,4 +29,14 @@ public class Person {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @ManyToMany(mappedBy = "persons", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private Set<Role> roles;
+
+    public Person(String name, String lastName, String userName, String password) {
+        this.name = name;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+    }
 }
