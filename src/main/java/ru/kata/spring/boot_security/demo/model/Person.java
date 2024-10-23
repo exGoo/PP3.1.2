@@ -29,7 +29,8 @@ public class Person {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToMany(mappedBy = "persons", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "persons",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @ToString.Exclude
     private Set<Role> roles;
 

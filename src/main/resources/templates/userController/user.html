@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>home page</title>
+</head>
+<body>
+<h1>
+    <span th:text="${person.getUserName()}"/>, welcome spring boot security page!
+</h1>
+<hr>
+<h2>Your info:</h2>
+    <div>
+        Name: <span th:text="${person.getName()}" />
+    </div>
+    <div>
+        Lastname: <span th:text="${person.getLastName()}" />
+    </div>
+    <div>
+        Your roles:
+        <th:block th:each="role : ${person.getRoles()}">
+            <div>
+                <span th:text="${role.getAuthority()}" />
+            </div>
+        </th:block>
+    </div>
+    <br>
+    <button onclick="window.location.href='/logout'">Log out</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')" onclick="window.location.href='/admin/listOfUsers'">
+        Back to list
+    </button>
+</body>
+</html>

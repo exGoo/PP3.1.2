@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Spring Security Example</title>
+    <title>welcome</title>
 </head>
-<body>
-<h1>Welcome! Exc PP 3.1.2</h1>
-<br>
-
-<button onclick="window.location.href='/authorization'">Авторизация</button>
-<button onclick="window.location.href='/registry'">Регистрация</button>
-
+<body style="text-align: center">
+    <h1>Welcome to home page! PP3.1.2</h1>
+    <hr>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location.href='/auth'">Log in</button>
+    <button sec:authorize="isAuthenticated()" onclick="window.location.href='/logout'">Log out</button>
 </body>
 </html>

@@ -6,6 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
 
+import javax.management.relation.RoleNotFoundException;
+import java.util.Optional;
+
 @Service
 @Transactional(readOnly = true)
 public class RoleServiceImp implements RoleService {
@@ -38,5 +41,14 @@ public class RoleServiceImp implements RoleService {
     @Transactional
     public void delete(Role role) {
         roleRepository.delete(role);
+    }
+
+    @Override
+    public Role findByRoleName(String name) throws RoleNotFoundException {
+        Optional<Role> role = roleRepository.findByRoleName(name);
+        if (role.isEmpty()) {
+            throw new RoleNotFoundException("Role not found");
+        }
+        return role.get();
     }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="display: block">
+<form th:method="POST" th:action="@{/admin/addUser}" th:object="${person}">
+  <label for="name">Name: </label>
+  <input type="text" id="name" th:field="*{name}">
+  <label for="lastname">Lastname: </label>
+  <input type="text" id="lastname" th:field="*{lastName}">
+  <label for="userName">Username: </label>
+  <input type="text" id="userName" th:field="*{userName}">
+  <label for="password">Password: </label>
+  <input type="text" id="password" th:field="*{password}">
+  <button type="submit">create</button>
+</form>
+<hr>
+<button onclick="window.location.href='admin/listOfUsers'">Back to list</button>
+</body>
+</html>
