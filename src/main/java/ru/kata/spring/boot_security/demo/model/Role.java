@@ -22,7 +22,9 @@ public class Role implements GrantedAuthority {
     private String roleName;
 
     @ManyToMany(
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
+    )
     @JoinTable(
             name = "person_role",
             joinColumns = @JoinColumn(name = "role_id"),

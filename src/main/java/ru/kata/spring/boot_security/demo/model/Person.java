@@ -29,8 +29,11 @@ public class Person {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToMany(mappedBy = "persons",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(
+            mappedBy = "persons",
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
+    )
     @ToString.Exclude
     private Set<Role> roles;
 

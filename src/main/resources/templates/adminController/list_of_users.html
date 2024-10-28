@@ -6,32 +6,31 @@
     <title>all users</title>
 </head>
 <body>
-<h1>User manager</h1>
-<th:block th:each="user : ${list}">
+    <h1>User manager</h1>
+    <th:block th:each="user : ${list}">
+        <hr>
+        <div>
+            <p>Username: <span th:text="${user.getUserName()}"/></p>
+            <p>Name: <span th:text="${user.getName()}"/></p>
+        </div>
+        <div style="display: flex; gap: 5px">
+            <a th:href="@{/user(id=${user.getId()})}">
+                <button type="button">Details</button>
+            </a>
+            <a th:href="@{/admin/update(id=${user.getId()})}">
+                <button type="button">Update</button>
+            </a>
+            <form th:method="POST" th:action="@{/admin/delete(id=${user.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </div>
+    </th:block>
     <hr>
+    <br>
     <div>
-        <p>Username: <span th:text="${user.getUserName()}"/></p>
-        <p>Name: <span th:text="${user.getName()}"/></p>
+        <button onclick="window.location.href='/admin/addUser'">Add user</button>
+        <button onclick="window.location.href='/admin'">Home</button>
+        <button onclick="window.location.href='/logout'">Log out</button>
     </div>
-    <div style="display: flex; gap: 5px">
-        <a th:href="@{/user(id=${user.getId()})}">
-            <button type="button">Details</button>
-        </a>
-        <a th:href="@{/admin/update(id=${user.getId()})}">
-            <button type="button">Update</button>
-        </a>
-        <form th:method="POST" th:action="@{/admin/delete(id=${user.getId()})}">
-            <input type="submit" value="Delete"/>
-        </form>
-    </div>
-</th:block>
-<hr>
-<br>
-<div>
-    <button onclick="window.location.href='/admin/addUser'">Add user</button>
-    <button onclick="window.location.href='/admin'">Home</button>
-    <button onclick="window.location.href='/logout'">Log out</button>
-</div>
-
 </body>
 </html>
